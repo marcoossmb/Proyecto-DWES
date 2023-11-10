@@ -18,12 +18,12 @@
                 <form method="post" action="./pages/calendario.php">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input name="user" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                        
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
                     </div>
               
                     <button class="boton bg-success" type="submit" class="btn btn-primary">Entrar</button>
