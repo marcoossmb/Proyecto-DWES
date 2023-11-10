@@ -1,0 +1,47 @@
+body{
+    background-image: url(../assets/images/fondo.jpg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+}
+.contenedor{
+    max-width: 1080px;
+    background-color: rgba(0, 0, 0, 0.362);
+    margin: 0 auto;
+    margin-top: 6rem;
+    border-radius: 10px;
+    padding-top: 50px;
+}
+
+.main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.main__h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+.main__form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.form__button{
+    border: 0;
+    width: 150px;
+    margin: 0 auto;
+}
+.form__label{
+    font-size: 1.3rem;
+}
+.right{
+    margin-right: 30px;
+}
