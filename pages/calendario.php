@@ -20,26 +20,20 @@
         try {
             //Se crea la conexión con la base de datos
             $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
-            $sql='SELECT usuario,contraseña FROM usuarios where usuario="'.$usuario.'"and contraseña="'.$contraseña.'"';
+            $sql='SELECT nombre,usuario,contraseña FROM usuarios where usuario="'.$usuario.'"and contraseña="'.$contraseña.'"';
             
                 $user = $bd->query($sql);
-              echo "Número de usuarios: ".$user->rowCount()."<br>";
-                //Se recorre el array que nos devuelve la consulta
-                foreach ($user as $row){
-                    print $row["usuario"]."\t";
-                    print $row["contraseña"]."\t";
+            
+                 foreach ($user as $row){
+                 $nombre= $row["nombre"];
                   
                 }
-                
-                //Se cierra la conexión
-                $bd = null;
-            
-            
-            
+               
+             
             
             
         } catch (Exception $e) {
-            echo "Error con la base de datos: " . $e->getMessage();
+            header("Location: ../index.php");
            
         }
         
@@ -52,11 +46,41 @@
     } else {
         header("Location: ../index.php");
     }
+    if ($nombre!="Admin") {
+        
     ?>
+    
     <body class="body">
         <div class="contenedor">
             <header class="header">
-                <h1 class="header__title">BIENVENIDO A LA PÁGINA DEL EQUIPO</h1>   
+                <h1 class="header__title">BIENVENIDO <?php echo strtoupper($nombre ) ?> A LA PÁGINA DEL EQUIPO</h1>   
+            </header>
+            <main class="main">
+                
+
+                
+                
+                
+                
+            
+            </main>
+
+
+
+
+
+        </div>  
+
+    </body>
+    <?php
+      }
+ else {
+       ?>
+     
+    <body class="body">
+        <div class="contenedor">
+            <header class="header">
+                <h1 class="header__title">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>   
             </header>
             <main class="main">
 
@@ -70,4 +94,10 @@
         </div>  
 
     </body>
+    
+    
+    <?php
+      }
+         $bd = null;
+    ?>
 </html>
