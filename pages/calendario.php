@@ -193,9 +193,18 @@
                     </tbody>
                 </table>
                 <h2 class="mt-3">Añadir Entrenamiento o Partido</h2>
-                <form>
+                <form method="post" action="./modificacioncalendario.php">
                     <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required>
+                    <input type="date" id="fecha" name="fecha" min="2023-11-01" max="2023-11-30" required>
+                     <label for="fecha">Equipación:</label>
+                     <select name="equipacion" id="id">
+                         <option disabled="" selected="" value="texto" >Selecciona equipacion</option>
+                             <option value="local">local</option>
+                             <option value="visitante">visitante</option>
+                         </select>
+                      <label for="fecha">Lugar:</label>
+                      <input type="text" name="lugar" required>
+
                     <button type="submit">Enviar</button>
                 </form>
             </main>
