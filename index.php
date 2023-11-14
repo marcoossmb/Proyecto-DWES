@@ -1,3 +1,31 @@
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombre = $_POST["nombre"];
+        $apellidos = $_POST["apellidos"];
+        $email = $_POST["email"];
+        $dni = $_POST["dni"];
+        $dorsal = $_POST["dorsal"];
+        $usuario = $_POST["usuario"];
+        $contrasena = hash("sha256", $_POST["contrasena"]);
+        
+        $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
+        $usuariobd = 'root';
+        $clavebd = '';
+
+        try {
+            //Se crea la conexión con la base de datos
+            $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
+            $sql='INSERT INTO usuarios (nombre,apellidos,correo,rol,dni,usuario,contraseña) VALUES ("'.$nombre.'","'.$apellidos.'","'.$email.'",0,"'.$dni.'","'.$usuario.'","'.$contrasena.'");';
+            
+            $user = $bd->query($sql);          
+         
+        } catch (Exception $e) {
+            //header("Location: ./index.php");
+            echo $e->getMessage();
+           
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -17,12 +45,12 @@
                 </h2>
                 <form method="post" action="./pages/calendario.php">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                        <input name="user" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label class="form-label">Usuario</label>
+                        <input name="user" type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                        <label class="form-label">Contraseña</label>
+                        <input name="password" type="password" class="form-control" id="inputPassword1">
                     </div>
                     <div class="d-flex">
                         <p>¿No estás registrado?</p>
