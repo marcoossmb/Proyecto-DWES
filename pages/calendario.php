@@ -33,7 +33,6 @@
         }
     } else {
         $nombre = $_GET["nombre"];
-        //header("Location: ../index.php");
     }
     ?>
 
