@@ -17,7 +17,7 @@
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
                       </div>
                       <div class="form-group">
-                        <label class="form__label">Apellidos</label>
+                        <label class="form__label">Apellido</label>
                         <input type="text" class="form-control" id="apellidos" name="apellidos" required>
                       </div>
                     </div>

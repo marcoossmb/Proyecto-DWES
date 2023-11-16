@@ -25,8 +25,12 @@
 
             $user = $bd->query($sql);
 
-            foreach ($user as $row) {
-                $nombre = $row["nombre"];
+            if ($user->rowCount() > 0) {
+                foreach ($user as $row) {
+                    $nombre = $row["nombre"];
+                }
+            } else {
+                header("Location: ../index.php?error");
             }
         } catch (Exception $e) {
             header("Location: ../index.php");
@@ -104,20 +108,20 @@
                                         }
                                     }
                                     ?> </td>
-                                    <?php
-                                    $dias++;
-                                    if ($dias == 7) {
-                                        echo '</tr><tr>';
-                                        $dias = 0;
-                                    }
+                                <?php
+                                $dias++;
+                                if ($dias == 7) {
+                                    echo '</tr><tr>';
+                                    $dias = 0;
                                 }
-                                ?>
+                            }
+                            ?>
                     </tbody>
                 </table>
             </main>
-                            <?php
-                            if ($nombre == "Admin") {
-                                ?>
+            <?php
+            if ($nombre == "Admin") {
+                ?>
                 <h2 class="mt-3">Añadir Entrenamiento o Partido</h2>
                 <form method="post" action="./modificacioncalendario.php?<?php echo("nombre=$nombre"); ?>">
                     <label for="fecha">Fecha:</label>
