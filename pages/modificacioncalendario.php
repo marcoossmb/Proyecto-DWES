@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Se crea la conexión con la base de datos
         $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
-        $sql="SELECT MAX(cod_partido) FROM partidos";
+        $sql="SELECT MAX(cod_partido) AS cod_partido FROM partidos;";
+
         
          $sabercodmax = $bd->query($sql);
             $codmax;
@@ -27,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         // Corregir la sintaxis de la consulta SQL
-        $sq2 = 'insert into partidos ("' . $lugar . '","' . $fecha . '","' . $equipacion . '",'.$codmax.')';
+        $sq2 = 'insert into partidos(lugar,fecha,equipacion,cod_partido) values("' . $lugar . '","' . $fecha . '","' . $equipacion . '",'.$codmax.');';
 
         // Preparar la consulta
         $stmt2 = $bd->prepare($sq2);
@@ -36,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Ejecutar la consulta
         if ($stmt2->execute()) {
-            echo "Nuevo registro insertado correctamente.";
+            header("Location: ./calendario.php");
         } else {
             // Obtener información sobre el error
             $errorInfo = $stmt2->errorInfo();
