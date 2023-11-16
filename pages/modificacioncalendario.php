@@ -16,7 +16,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Se crea la conexión con la base de datos
-        $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
+         $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
+        
+        $verificar= "SELECT cod_partido FROM partidos WHERE fecha = '$fecha' LIMIT 1;"; 
+        $existe = $bd->query($verificar);
+        
+        
+        if ($existe->rowCount() > 0) {
+        $codmax;
+        foreach ($existe as $row) {
+            $codmax = $row["cod_partido"];
+        }
+             $sqlActualizar = "UPDATE partidos SET lugar = '$lugar', equipacion = '$equipacion' WHERE cod_partido = $codmax;";
+             $stmtUpdate = $bd->prepare($sqlActualizar);
+            $stmtUpdate->execute();
+             header("Location: ./calendario.php?nombre=$nombre");
+            
+            
+        }
+        else{
+      
+       
         $sql = "SELECT MAX(cod_partido) AS cod_partido FROM partidos;";
 
         $sabercodmax = $bd->query($sql);
@@ -40,10 +60,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errorInfo = $stmt2->errorInfo();
             echo "Error al insertar el registro: " . $errorInfo[2];
         }
+        }
     } catch (Exception $e) {
         echo "Error al hacer el insert: " . $e->getMessage();
     }
+    
+
+    
 } else {
     echo "Error: No se ha hecho la petición POST.";
 }
+
 
