@@ -122,7 +122,7 @@
             <?php
             if ($nombre == "Admin") {
                 ?>
-                <h2 class="mt-3">Añadir Entrenamiento o Partido</h2>
+                <h2 class="mt-3">Añadir Partido</h2>
                 <form method="post" action="./modificacioncalendario.php?<?php echo("nombre=$nombre"); ?>">
                     <label for="fecha">Fecha:</label>
                     <input type="date" id="fecha" name="fecha" min="2023-11-01" max="2023-11-30" required>
@@ -135,6 +135,20 @@
                     <label for="fecha">Lugar:</label>
                     <input type="text" name="lugar" required>
 
+                    <button type="submit">Enviar</button>
+                </form>
+                <?php 
+                if (isset($_GET["error"])) {
+                       ?>
+                <span class="text-danger">Error: no hay partido ese dia</span>
+                <?php
+                    } 
+                    ?>
+                
+                  <h2 class="mt-3">Eliminar Partido</h2>
+                <form method="post" action="./eliminarcalendario.php?<?php echo("nombre=$nombre"); ?>">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" min="2023-11-01" max="2023-11-30" required>
                     <button type="submit">Enviar</button>
                 </form>
             </main>
