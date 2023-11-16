@@ -5,6 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $equipacion = $_POST['equipacion'];
     $lugar = $_POST["lugar"];
 
+    $nombre = $_GET['nombre'];
+
     echo $fecha;
     echo $equipacion;
 
@@ -15,29 +17,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Se crea la conexión con la base de datos
         $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
-        $sql="SELECT MAX(cod_partido) AS cod_partido FROM partidos;";
+        $sql = "SELECT MAX(cod_partido) AS cod_partido FROM partidos;";
 
-        
-         $sabercodmax = $bd->query($sql);
-            $codmax;
-                 foreach ($sabercodmax as $row){
-                 $codmax= $row["cod_partido"];
-                  
-                }
-        $codmax+=1;
-        
+        $sabercodmax = $bd->query($sql);
+        $codmax;
+        foreach ($sabercodmax as $row) {
+            $codmax = $row["cod_partido"];
+        }
+        $codmax += 1;
 
         // Corregir la sintaxis de la consulta SQL
-        $sq2 = 'insert into partidos(lugar,fecha,equipacion,cod_partido) values("' . $lugar . '","' . $fecha . '","' . $equipacion . '",'.$codmax.');';
+        $sq2 = 'insert into partidos(lugar,fecha,equipacion,cod_partido) values("' . $lugar . '","' . $fecha . '","' . $equipacion . '",' . $codmax . ');';
 
         // Preparar la consulta
         $stmt2 = $bd->prepare($sq2);
 
-       
-
         // Ejecutar la consulta
         if ($stmt2->execute()) {
-            header("Location: ./calendario.php");
+            header("Location: ./calendario.php?nombre=$nombre");
         } else {
             // Obtener información sobre el error
             $errorInfo = $stmt2->errorInfo();

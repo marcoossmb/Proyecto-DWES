@@ -32,7 +32,8 @@
             header("Location: ../index.php");
         }
     } else {
-        header("Location: ../index.php");
+        $nombre = $_GET["nombre"];
+        //header("Location: ../index.php");
     }
     ?>
 
@@ -86,7 +87,7 @@
                                         } else {
                                             $fecha = $i;
                                         }
-                                         echo $i."<br>";
+                                        echo $i . "<br>";
                                         try {
                                             // Se crea la conexión con la base de datos
                                             $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
@@ -95,19 +96,13 @@
                                             $saberpartido = $bd->query($sql);
 
                                             foreach ($saberpartido as $fila) {
-                                                
-                                               echo  $fila['lugar'] . "<br>";
-                                                echo  $fila['equipacion'] . "<br>";
+
+                                                echo $fila['lugar'] . "<br>";
+                                                echo $fila['equipacion'] . "<br>";
                                             }
                                         } catch (Exception $e) {
                                             echo "Error al hacer el insert: " . $e->getMessage();
                                         }
-
-
-
-
-
-                                       
                                     }
                                     ?> </td>
                                     <?php
@@ -125,7 +120,7 @@
                             if ($nombre == "Admin") {
                                 ?>
                 <h2 class="mt-3">Añadir Entrenamiento o Partido</h2>
-                <form method="post" action="./modificacioncalendario.php">
+                <form method="post" action="./modificacioncalendario.php?<?php echo("nombre=$nombre"); ?>">
                     <label for="fecha">Fecha:</label>
                     <input type="date" id="fecha" name="fecha" min="2023-11-01" max="2023-11-30" required>
                     <label for="fecha">Equipación:</label>
