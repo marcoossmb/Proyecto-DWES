@@ -137,15 +137,15 @@
 
                     <button type="submit">Enviar</button>
                 </form>
-                <?php 
-                if (isset($_GET["error"])) {
-                       ?>
-                <span class="text-danger">Error: no hay partido ese dia</span>
                 <?php
-                    } 
+                if (isset($_GET["error"])) {
                     ?>
-                
-                  <h2 class="mt-3">Eliminar Partido</h2>
+                    <span class="text-danger">Error: no hay partido ese dia</span>
+                    <?php
+                }
+                ?>
+
+                <h2 class="mt-3">Eliminar Partido</h2>
                 <form method="post" action="./eliminarcalendario.php?<?php echo("nombre=$nombre"); ?>">
                     <label for="fecha">Fecha:</label>
                     <input type="date" id="fecha" name="fecha" min="2023-11-01" max="2023-11-30" required>
@@ -155,6 +155,21 @@
         </div>  
     </body>
 
+    <?php
+} else {
+    if (isset($_GET['correo'])) {
+        echo '<span class="text-success ml-5">Correo Enviado</span>';
+    }
+    ?>
+
+    <form class="ml-5" method="post" action="./send.php?<?php echo("nombre=$nombre"); ?>">
+        <h2 class="mt-3">Enviar Correo Al Entrenador</h2><br>
+        <label>Asunto</label><br>
+        <input type="text" name="subjet"> <br>
+        <label>Mensaje</label><br>
+        <textarea name="mensaje" rows="4" cols="50"></textarea><br>
+        <button class="mt-3" type="submit" value="" name="send">Enviar</button>
+    </form>
     <?php
 }
 
