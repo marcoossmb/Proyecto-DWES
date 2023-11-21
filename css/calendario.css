@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    }
+}
 
 table {
     width: 90%;
@@ -12,15 +12,16 @@ th, td {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    width: 200px;
 }
 
 th {
-    background-color: #f2f2f2;color: black;
-    
+    background-color: #f2f2f2;
+    color: black;
 }
 
 td {
-    height: 80px;
+    height: 100px;
 }
 
 .margin-l{
