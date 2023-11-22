@@ -29,6 +29,13 @@
                 foreach ($user as $row) {
                     $nombre = $row["nombre"];
                 }
+                // Añado dos cookies la primera guarda el usuario y la segunda el rol
+                setcookie("user_name", $nombre, time() + (86400 * 30), "/");
+                if ($nombre == "Admin") {
+                    setcookie("user_role", "1", time() + (86400 * 30), "/");
+                } else {
+                    setcookie("user_role", "0", time() + (86400 * 30), "/");
+                }
             } else {
                 header("Location: ../index.php?error");
             }
@@ -36,7 +43,11 @@
             header("Location: ../index.php");
         }
     } else {
-        $nombre = $_GET["nombre"];
+        if (isset($_GET['nombre'])) {
+            $nombre = $_GET["nombre"];
+        } else {
+            header("Location: ../index.php");
+        }
     }
     ?>
 
