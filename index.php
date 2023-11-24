@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </header>
             <main class="main">
                 <h2 class="main__title">
-                    INICIA SESION
+                    INICIA SESIÓN
                 </h2>
                 <form method="post" action="./pages/calendario.php">
                     <?php

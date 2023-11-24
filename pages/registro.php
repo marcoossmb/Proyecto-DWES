@@ -9,7 +9,7 @@
     <body>
         <div class="contenedor">
             <main class="main">
-                <h1 class="main__h1">REGISTRATE</h1>
+                <h1 class="main__h1">REGÍSTRATE</h1>
                 <form class="main__form" action="../index.php" method="post">
                     <div class="d-flex mb-3 mt-3">
                         <div class="form-group right">
