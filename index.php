@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         header("Location: ./index.php");
         echo $e->getMessage();
-    }
+    }   
 }
 ?>
 <!DOCTYPE html>
@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form method="post" action="./pages/calendario.php">
                     <?php
                     if (isset($_GET['error'])) {
-                    ?>
-                    <span class="text-danger">Usuario o Contraseña incorrectos</span>
+                        ?>
+                        <span class="text-danger font-weight-bold">Usuario o Contraseña incorrectos</span>
                     <?php
                     }
                     ?>
@@ -58,10 +58,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input name="password" type="password" class="form-control" id="inputPassword1">
                     </div>
                     <div class="d-flex">
-                        <p>¿No estás registrado?</p>
-                        <a href="./pages/registro.php">Registate</a>
+                        <p>¿No estás registrado?</p>&nbsp;
+                        <a class="font-weight-bold" href="./pages/registro.php">Registate</a>
                     </div>
-                    <button class="boton bg-success" type="submit" class="btn btn-primary">Entrar</button>
+                    <?php
+                    if (isset($_GET['error'])) {
+                        ?>
+                        <div class="d-flex px-3 mb-3">
+                            <a class="font-weight-bold" href="./pages/cambiarcontra.php">He olvidado mi contraseña</a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <button class="boton bg-success d-flex justify-content-center border-0 rounded" type="submit" class="btn btn-primary">Entrar</button>
                 </form>
             </main>
         </div>  
