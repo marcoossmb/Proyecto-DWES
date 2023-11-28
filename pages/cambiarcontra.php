@@ -5,7 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPass = hash("sha256", $_POST['pass1']);
 }
 if (isset($_GET['nombre'])) {
-    $nombre = $_GET['nombre'];
+    $nombre_descodificado = $_GET['nombre'];
+    $nombre = base64_decode($nombre_descodificado);
 }
 ?>          
 <!DOCTYPE html>
@@ -47,7 +48,7 @@ if (isset($_GET['nombre'])) {
                 }
                 if (isset($_GET['verificarTrue'])) {
                     ?>          
-                    <form method="post" action="cambiarcontra.php?verificarTrue&&nombre=<?php echo $nombre; ?>">
+                    <form method="post" action="cambiarcontra.php?verificarTrue&&nombre=<?php echo $nombre_descodificado; ?>">
                         <div class="mt-3 mb-3">
                             <label class="form-label">Nueva Contraseña</label>
                             <input name="pass1" type="password" required class="form-control">
