@@ -2,6 +2,44 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
+.header {
+    background-color: green;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+}
+
+.header__marg {
+    margin: 0 auto;
+    max-width: 1080px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header__img {
+    width: 80px;
+    border-radius: 10px;
+}
+
+.header__log {
+    font-size: 1.3rem;
+    margin-right: 20px;
+}
+
+.header__button {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
 table {
     width: 90%;
     border-collapse: collapse;

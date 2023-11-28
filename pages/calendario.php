@@ -9,6 +9,52 @@
 
     </head>
     <?php
+    function mostrarPartidosPorMes() {
+        $dias = 0;
+
+        echo '<table border="1"><tr>';
+
+        for ($i = -1; $i <= 30; $i++) {
+            echo '<td>';
+
+            if ($i > 0) {
+                $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
+                $usuariobd = 'root';
+                $clavebd = '';
+
+                $fecha = ($i < 10) ? "0" . $i : $i;
+
+                echo $i . "<br>";
+
+                try {
+                    // Se crea la conexión con la base de datos
+                    $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
+                    $sql = "SELECT * FROM partidos where fecha='2023-11-" . $fecha . "';";
+
+                    $saberpartido = $bd->query($sql);
+
+                    foreach ($saberpartido as $fila) {
+                        echo $fila['lugar'] . "<br>";
+                        echo $fila['equipacion'] . "<br>";
+                    }
+                } catch (Exception $e) {
+                    echo "Error al hacer la consulta: " . $e->getMessage();
+                }
+            }
+
+            echo '</td>';
+
+            $dias++;
+
+            if ($dias == 7) {
+                echo '</tr><tr>';
+                $dias = 0;
+            }
+        }
+
+        echo '</tr></table>';
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $usuario = $_POST["user"];
@@ -53,70 +99,32 @@
 
     <body class="body">
         <div class="contenedor">
+            <!-- INICIO DEL HEADER -->
             <header class="header">
-
+                <section class="header__marg">
+                    <article class="header__article">
+                        <img src="../assets/images/logotipo.PNG" alt="" class="header__img">
+                    </article>
+                    <article class="header__log">
+                        <button class="header__button">Cerrar Sesión</button>
+                    </article>
+                </section>
+            </header>
+            <!-- FIN DEL HEADER -->
+            <main class="main">
                 <?php
                 if ($nombre == "Admin") {
                     ?> 
-                    <h1 class="header__title header__title--cal">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
+                    <h1 class="header__title header__title--cal mb-5">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 } else {
                     ?> 
-                    <h1 class="header__title header__title--cal">BIENVENIDO <?php echo strtoupper($nombre) ?> A LA PÁGINA DEL EQUIPO</h1>    
+                    <h1 class="header__title header__title--cal mb-5">BIENVENIDO <?php echo strtoupper($nombre) ?> A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 }
-
-                function mostrarPartidosPorMes() {
-                    $dias = 0;
-
-                    echo '<table border="1"><tr>';
-
-                    for ($i = -1; $i <= 30; $i++) {
-                        echo '<td>';
-
-                        if ($i > 0) {
-                            $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
-                            $usuariobd = 'root';
-                            $clavebd = '';
-
-                            $fecha = ($i < 10) ? "0" . $i : $i;
-
-                            echo $i . "<br>";
-
-                            try {
-                                // Se crea la conexión con la base de datos
-                                $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
-                                $sql = "SELECT * FROM partidos where fecha='2023-11-" . $fecha . "';";
-
-                                $saberpartido = $bd->query($sql);
-
-                                foreach ($saberpartido as $fila) {
-                                    echo $fila['lugar'] . "<br>";
-                                    echo $fila['equipacion'] . "<br>";
-                                }
-                            } catch (Exception $e) {
-                                echo "Error al hacer la consulta: " . $e->getMessage();
-                            }
-                        }
-
-                        echo '</td>';
-
-                        $dias++;
-
-                        if ($dias == 7) {
-                            echo '</tr><tr>';
-                            $dias = 0;
-                        }
-                    }
-
-                    echo '</tr></table>';
-                }
                 ?>
-
-            </header>
-            <main class="main">
                 <h2>Calendario</h2>
                 <table>
                     <thead>
