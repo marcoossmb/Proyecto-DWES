@@ -2,6 +2,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
+    $hashedPass = hash("sha256", $_POST['pass1']);
+}
+if (isset($_GET['nombre'])) {
+    $nombre = $_GET['nombre'];
 }
 ?>          
 <!DOCTYPE html>
@@ -29,9 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $clavebd = '';
 
                         try {
-                            $bd = new PDO($cadena_conexion, $usuario, $clave);
+                            $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
 
-                            $bd = null;
+                            $sqlActualizar = "UPDATE usuarios SET contraseña = '$hashedPass' WHERE nombre = '$nombre'";
+                            $stmtUpdate = $bd->prepare($sqlActualizar);
+                            $stmtUpdate->execute();
                         } catch (Exception $e) {
                             echo "Error con la base de datos: " . $e->getMessage();
                         }
@@ -41,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 if (isset($_GET['verificarTrue'])) {
                     ?>          
-                    <form method="post" action="cambiarcontra.php?verificarTrue">
+                    <form method="post" action="cambiarcontra.php?verificarTrue&&nombre=<?php echo $nombre; ?>">
                         <div class="mt-3 mb-3">
                             <label class="form-label">Nueva Contraseña</label>
                             <input name="pass1" type="password" required class="form-control">
@@ -50,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label class="form-label">Repetir Contraseña</label>
                             <input name="pass2" type="password" required class="form-control">
                         </div>
-                        <button class="boton bg-success d-flex justify-content-center border-0 rounded" type="submit" class="btn btn-primary">Cambiar</button>
+                        <button class="btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Cambiar</button>
                     </form>
                     <?php
                 } else {
@@ -69,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label class="form-label">Correo Electrónico</label>
                             <input name="correo" type="email" required class="form-control">
                         </div>
-                        <button class="boton bg-success d-flex justify-content-center border-0 rounded" type="submit" class="btn btn-primary">Verificar</button>
+                        <button class="btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Verificar</button>
                     </form>
                     <?php
                 }

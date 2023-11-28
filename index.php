@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     }
                     ?>
-                    <button class="boton bg-success d-flex justify-content-center border-0 rounded" type="submit" class="btn btn-primary">Entrar</button>
+                    <button class="btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Entrar</button>
                 </form>
             </main>
         </div>  

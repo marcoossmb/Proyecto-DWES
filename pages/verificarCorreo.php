@@ -22,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $existe = $bd->query($verificar);
         foreach ($existe as $row) {
             $nombre = $row["nombre"];
+            $nombre_codificado = base64_encode($nombre);
+
         }
 
         if ($existe->rowCount() > 0) {
@@ -43,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Body = "<h1>Estimado/a " . $nombre . "</h1><br><br>
                            Hemos recibido una solicitud para cambiar la contraseña asociada a su cuenta en la página web de tu equipo.<br><br>
                            Para garantizar la seguridad de su cuenta, necesitamos verificar que esta solicitud proviene legítimamente de usted. Por favor, haga clic en el siguiente enlace para confirmar su intención de cambiar la contraseña:<br><br>
-                           <a href='http://localhost/Proyecto-DWES/pages/cambiarcontra.php?verificarTrue'>Verificar Correo</a><br><br>
+                           <a href='http://localhost/Proyecto-DWES/pages/cambiarcontra.php?verificarTrue&&nombre=".urlencode($nombre_codificado)."'>Verificar Correo</a><br><br>
                            Si no ha solicitado este cambio o no reconoce esta actividad, le recomendamos que ignore este mensaje y tome las medidas necesarias para asegurar su cuenta.";
             $mail->send();
             
-            header("Location: ./cambiarContra.php?enviado");
+            header("Location: ./cambiarContra.php?enviado&&nombre='.urlencode($nombre_codificado).'");
         } else {
             header("Location: ./cambiarContra.php?denegado");
         }
