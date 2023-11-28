@@ -21,14 +21,17 @@
 
 .header{
     width: 100%;
-    padding: 1rem;
-
-
+    padding: 2rem 2rem 0 2rem;
 }
 .header__title{
     text-align: center;
     font-size: 3rem;
     font-weight: bold;
+    border-bottom: 5px solid white;
+}
+.header__title--cal{
+    margin-top: 70px;
+    font-size: 2rem;
 }
 
 .main{
@@ -38,7 +41,6 @@
     align-items: center;
     margin: 1rem;
     padding: 1rem;
-
     width: 100%
 }
 .main__title{

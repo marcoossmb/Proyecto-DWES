@@ -58,12 +58,12 @@
                 <?php
                 if ($nombre == "Admin") {
                     ?> 
-                    <h1 class="header__title">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
+                    <h1 class="header__title header__title--cal">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 } else {
                     ?> 
-                    <h1 class="header__title">BIENVENIDO <?php echo strtoupper($nombre) ?> A LA PÁGINA DEL EQUIPO</h1>    
+                    <h1 class="header__title header__title--cal">BIENVENIDO <?php echo strtoupper($nombre) ?> A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 }
