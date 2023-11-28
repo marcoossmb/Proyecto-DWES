@@ -39,6 +39,8 @@ if (isset($_GET['nombre'])) {
                             $sqlActualizar = "UPDATE usuarios SET contraseña = '$hashedPass' WHERE nombre = '$nombre'";
                             $stmtUpdate = $bd->prepare($sqlActualizar);
                             $stmtUpdate->execute();
+                            
+                            header("Location: ../index.php?cambioContra");
                         } catch (Exception $e) {
                             echo "Error con la base de datos: " . $e->getMessage();
                         }

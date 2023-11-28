@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($existe as $row) {
             $nombre = $row["nombre"];
             $nombre_codificado = base64_encode($nombre);
-
         }
 
         if ($existe->rowCount() > 0) {
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <p style='color: #555555; font-size: 16px; margin-bottom: 20px;'>Hemos recibido una solicitud para cambiar la contraseña asociada a su cuenta en la página web de tu equipo.</p>
                                             <p style='color: #555555; font-size: 16px; margin-bottom: 20px;'>Para garantizar la seguridad de su cuenta, necesitamos verificar que esta solicitud proviene legítimamente de usted.</p>
                                             <p style='color: #555555; font-size: 16px; margin-bottom: 20px;'>Por favor, haga clic en el siguiente enlace para confirmar su intención de cambiar la contraseña:</p>
-                                            <p style='margin-bottom: 30px;'><a href='http://localhost/Proyecto-DWES/pages/cambiarcontra.php?verificarTrue' style='color: #ffffff; text-decoration: none; font-size: 16px; display: inline-block; padding: 10px 20px; background-color: #28a745; border-radius: 5px; text-align: center;'>Verificar Correo</a></p>
+                                            <p style='margin-bottom: 30px;'><a href='http://localhost/Proyecto-DWES/pages/cambiarcontra.php?verificarTrue&&nombre=" . urlencode($nombre_codificado) . "' style='color: #ffffff; text-decoration: none; font-size: 16px; display: inline-block; padding: 10px 20px; background-color: #28a745; border-radius: 5px; text-align: center;'>Verificar Correo</a></p>
                                             <p style='color: #555555; font-size: 16px;'>Si no ha solicitado este cambio o no reconoce esta actividad, le recomendamos que ignore este mensaje y tome las medidas necesarias para asegurar su cuenta.</p>
                                         </td>
                                     </tr>
@@ -69,9 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $mail->send();
 
-            
             header("Location: ./cambiarContra.php?enviado&&nombre='.urlencode($nombre_codificado).'");
-
         } else {
             header("Location: ./cambiarContra.php?denegado");
         }
