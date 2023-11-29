@@ -57,11 +57,11 @@
    
    
     
-    
+    session_start();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
-          
+        
    
         $usuario = $_POST["user"];
         $contraseña = hash("sha256", $_POST["password"]);
@@ -85,8 +85,12 @@
                 foreach ($user as $row) {
                     $nombre = $row["nombre"];
                 }
+                
+                  $_SESSION['nombre']=$nombre;
+                
+                
                 // Añado dos cookies la primera guarda el usuario y la segunda el rol
-                setcookie("user_name",  $nombre, time() + (86400 * 30), "/");
+                setcookie("user_name",   $_SESSION['nombre'], time() + (86400 * 30), "/");
                 if ($nombre == "Admin") {
                     setcookie("user_role", "1", time() + (86400 * 30), "/");
                 } else {
@@ -123,14 +127,15 @@
             <!-- FIN DEL HEADER -->
             <main class="main">
                 <?php
-                if ( $nombre== "Admin") {
+                
+                if ($nombre== "Admin") {
                     ?> 
                     <h1 class="header__title header__title--cal mb-5">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 } else {
                     ?> 
-                    <h1 class="header__title header__title--cal mb-5">BIENVENIDO <?php echo strtoupper($_SESSION['usuario']) ?> A LA PÁGINA DEL EQUIPO</h1>    
+                    <h1 class="header__title header__title--cal mb-5">BIENVENIDO <?php echo strtoupper($nombre) ?> A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 }
