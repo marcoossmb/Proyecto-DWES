@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="../css/style.css">
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+  
+    
+    
     $nombre = $_GET['nombre'];
     $fecha = $_POST['fecha'];
 
