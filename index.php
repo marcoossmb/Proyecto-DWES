@@ -20,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $bd->query($sql);
     } catch (Exception $e) {
         header("Location: ./index.php");
-        echo $e->getMessage();
     }
 }
 ?>

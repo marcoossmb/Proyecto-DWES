@@ -202,6 +202,8 @@
 
                     <form class="ml-5" method="post" action="./send.php?<?php echo("nombre=$nombre"); ?>">
                         <h2 class="mt-3">Enviar Correo Al Entrenador</h2><br>
+                        <label>(Ponga aquí su correo para comprobar que funciona)</label><br>
+                        <input class="w-100" type="text" name="destinatario"> <br>
                         <label>Asunto</label><br>
                         <input type="text" name="subjet"> <br>
                         <label>Mensaje</label><br>
