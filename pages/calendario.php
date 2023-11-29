@@ -54,9 +54,16 @@
 
         echo '</tr></table>';
     }
-
+   
+   
+    
+    
+     session_start();
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+        
+          
+   
         $usuario = $_POST["user"];
         $contraseña = hash("sha256", $_POST["password"]);
         $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
@@ -64,6 +71,7 @@
         $clavebd = '';
 
         try {
+            
 
             //Se crea la conexión con la base de datos
             $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
@@ -72,12 +80,15 @@
             $user = $bd->query($sql);
 
             if ($user->rowCount() > 0) {
+                 
+            
+                
                 foreach ($user as $row) {
-                    $nombre = $row["nombre"];
+                    $_SESSION['usuario'] = $row["nombre"];
                 }
                 // Añado dos cookies la primera guarda el usuario y la segunda el rol
-                setcookie("user_name", $nombre, time() + (86400 * 30), "/");
-                if ($nombre == "Admin") {
+                setcookie("user_name",  $_SESSION['usuario'], time() + (86400 * 30), "/");
+                if ($_SESSION['usuario'] == "Admin") {
                     setcookie("user_role", "1", time() + (86400 * 30), "/");
                 } else {
                     setcookie("user_role", "0", time() + (86400 * 30), "/");
@@ -90,7 +101,7 @@
         }
     } else {
         if (isset($_GET['nombre'])) {
-            $nombre = $_GET["nombre"];
+            $_SESSION['usuario'] = $_GET["nombre"];
         } else {
             header("Location: ../index.php");
         }
@@ -106,21 +117,21 @@
                         <img src="../assets/images/logotipo.PNG" alt="" class="header__img">
                     </article>
                     <article class="header__log">
-                        <button class="header__button">Cerrar Sesión</button>
+                        <a href="./cerrar.php"class="header__button">Cerrar Sesión</a>
                     </article>
                 </section>
             </header>
             <!-- FIN DEL HEADER -->
             <main class="main">
                 <?php
-                if ($nombre == "Admin") {
+                if ( $_SESSION['usuario']== "Admin") {
                     ?> 
                     <h1 class="header__title header__title--cal mb-5">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 } else {
                     ?> 
-                    <h1 class="header__title header__title--cal mb-5">BIENVENIDO <?php echo strtoupper($nombre) ?> A LA PÁGINA DEL EQUIPO</h1>    
+                    <h1 class="header__title header__title--cal mb-5">BIENVENIDO <?php echo strtoupper($_SESSION['usuario']) ?> A LA PÁGINA DEL EQUIPO</h1>    
 
                     <?php
                 }
@@ -147,7 +158,7 @@
                 </table>
 
                 <?php
-                if ($nombre == "Admin") {
+                if ($_SESSION['usuario'] == "Admin") {
                     ?>
                     <h2 class="mt-3">Añadir Partido</h2>
                     <form method="post" action="./modificacioncalendario.php?<?php echo("nombre=$nombre"); ?>">
@@ -200,6 +211,12 @@
                     <?php
                 }
                 $bd = null;
+                if (!isset($_SESSION['usuario'])) {
+                 header("Location: ../index.php");
+                }
+                
+                
+                
                 ?>
             </main>
         </div>  
