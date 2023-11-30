@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $mail->send();
 
-            header("Location: ./cambiarContra.php?enviado&&nombre='.urlencode($nombre_codificado).'");
+            header("Location: ./cambiarContra.php?enviado&&nombre=".urlencode($nombre_codificado));
         } else {
             header("Location: ./cambiarContra.php?denegado");
         }

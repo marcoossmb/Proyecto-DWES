@@ -86,7 +86,7 @@ if (isset($_GET['nombre'])) {
                     <?php
                 }
                 ?>
-            </main>
+-            </main>
         </div>  
     </body>
 </html>
