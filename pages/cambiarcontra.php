@@ -16,6 +16,7 @@ if (isset($_GET['nombre'])) {
         <title>Proyecto Fútbol</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="shortcut icon" href="../assets/images/logotipo.PNG" type="image/x-icon">
 
     </head>
     <body class="body">
@@ -44,7 +45,7 @@ if (isset($_GET['nombre'])) {
                             echo "Error con la base de datos: " . $e->getMessage();
                         }
                     } else {
-                        echo '<span class = "text-danger font-weight-bold">Las contraseñas no coinciden</span>';
+                        echo '<span class = "p-1 rounded background__error">Las contraseñas no coinciden</span>';
                     }
                 }
                 if (isset($_GET['verificarTrue'])) {
@@ -66,10 +67,10 @@ if (isset($_GET['nombre'])) {
                     <form method="post" action="verificarCorreo.php">
                         <?php
                         if (isset($_GET['denegado'])) {
-                            echo '<span class = "text-danger font-weight-bold">Este correo no esta vinculado a ningún usuario</span>';
+                            echo '<span class = "p-1 rounded background__error">Este correo no esta vinculado a ningún usuario</span>';
                         }
                         if (isset($_GET['enviado'])) {
-                            echo '<span class = "text-success font-weight-bold">Correo enviado correctamente, revise su correo</span>';
+                            echo '<span class = "p-1 rounded bg-success">Correo enviado correctamente, revise su correo</span>';
                         }
                         ?>
 
@@ -77,14 +78,11 @@ if (isset($_GET['nombre'])) {
                             <label class="form-label">Correo Electrónico</label>
                             <input name="correo" type="email" required class="form-control">
                         </div>
-                          
-                       
-                       <button class=" btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Verificar</button>
-                 
-                   
+                        <div class="d-flex">
+                            <a class="p-1 bg-success text-white rounded text-center camb__link" href="../index.php">Volver</a>
+                            <button class="btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Verificar</button>
+                        </div>
                     </form>
-                
-               
                     <?php
                 }
                 ?>

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/calendario.css"/>
-
+        <link rel="shortcut icon" href="../assets/images/logotipo.PNG" type="image/x-icon">
     </head>
     <?php
     function mostrarPartidosPorMes() {
@@ -179,15 +179,15 @@
 
                         <button type="submit">Enviar</button>
                     </form>
+                    
+                    <h2 class="mt-3">Eliminar Partido</h2>
                     <?php
                     if (isset($_GET["error"])) {
                         ?>
-                        <span class="text-danger">Error: no hay partido ese dia</span>
+                        <span class="p-1 rounded background__error mb-3">Error: no hay partido ese dia</span>
                         <?php
                     }
                     ?>
-
-                    <h2 class="mt-3">Eliminar Partido</h2>
                     <form method="post" action="./eliminarcalendario.php?<?php echo("nombre=$nombre"); ?>">
                         <label>Fecha:</label>
                         <input type="date" name="fecha" min="2023-11-01" max="2023-11-30" required>

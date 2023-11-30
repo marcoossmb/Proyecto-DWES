@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <title>Proyecto Fútbol</title>
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="shortcut icon" href="./assets/images/logotipo.PNG" type="image/x-icon">
     </head>
     <body class="body">
         <div class="contenedor">
@@ -44,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     if (isset($_GET['error'])) {
                         ?>
-                        <span class="text-danger font-weight-bold">Usuario o Contraseña incorrectos</span>
+                        <span class="p-2 rounded background__error">Usuario o Contraseña incorrectos</span>
                         <?php
                     }
                     ?>
                     <?php
                     if (isset($_GET['cambioContra'])) {
                         ?>
-                        <span class="text-success font-weight-bold">Contraseña correctamente cambiada</span>
+                        <span class="bg-success">Contraseña correctamente cambiada</span>
                         <?php
                     }
                     ?>
