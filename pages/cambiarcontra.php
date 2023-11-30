@@ -77,8 +77,14 @@ if (isset($_GET['nombre'])) {
                             <label class="form-label">Correo Electrónico</label>
                             <input name="correo" type="email" required class="form-control">
                         </div>
-                        <button class="btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Verificar</button>
+                          
+                       
+                       <button class=" btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Verificar</button>
+                 
+                   
                     </form>
+                
+               
                     <?php
                 }
                 ?>
