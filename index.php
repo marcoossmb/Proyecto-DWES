@@ -34,13 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
     <body class="body">
         <div class="contenedor">
+            <!-- INICIO DEL HEADER -->
             <header class="header">
                 <h1 class="header__title">BIENVENIDO A LA PÁGINA DEL EQUIPO</h1>   
             </header>
+            <!-- FIN DEL HEADER -->
+            
+            <!-- INICIO DEL MAIN -->
             <main class="main">
-                <h2 class="main__title">
-                    INICIA SESIÓN
-                </h2>
+                <h2 class="main__title">INICIA SESIÓN</h2>
                 <form method="post" action="./pages/calendario.php">
                     <?php
                     if (isset($_GET['error'])) {
@@ -52,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     if (isset($_GET['cambioContra'])) {
                         ?>
-                        <span class="bg-success">Contraseña correctamente cambiada</span>
+                        <span class="p-2 bg-success rounded">Contraseña correctamente cambiada</span>
                         <?php
                     }
                     ?>
@@ -80,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button class="btn btn-primary boton bg-success d-flex justify-content-center border-0 rounded" type="submit">Entrar</button>
                 </form>
             </main>
+            <!-- FIN DEL MAIN -->
         </div>  
     </body>
 </html>
