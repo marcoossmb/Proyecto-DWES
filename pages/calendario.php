@@ -9,6 +9,7 @@
         <link rel="shortcut icon" href="../assets/images/logotipo.PNG" type="image/x-icon">
     </head>
     <?php
+
     function mostrarPartidosPorMes() {
         $dias = 0;
 
@@ -18,6 +19,7 @@
             echo '<td>';
 
             if ($i > 0) {
+                // Configuración de la conexión a la base de datos
                 $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
                 $usuariobd = 'root';
                 $clavebd = '';
@@ -54,15 +56,13 @@
 
         echo '</tr></table>';
     }
-   
-   
-    
+
+    // Inicia la sesión PHP
     session_start();
 
+    // Manejo para la autenticación del usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        
-   
+
         $usuario = $_POST["user"];
         $contraseña = hash("sha256", $_POST["password"]);
         $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
@@ -70,7 +70,6 @@
         $clavebd = '';
 
         try {
-            
 
             //Se crea la conexión con la base de datos
             $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
@@ -79,18 +78,15 @@
             $user = $bd->query($sql);
 
             if ($user->rowCount() > 0) {
-                 
-            
-                
+
                 foreach ($user as $row) {
                     $nombre = $row["nombre"];
                 }
-                
-                  $_SESSION['nombre']=$nombre;
-                
-                
+
+                $_SESSION['nombre'] = $nombre;
+
                 // Añado dos cookies la primera guarda el usuario y la segunda el rol
-                setcookie("user_name",   $_SESSION['nombre'], time() + (86400 * 30), "/");
+                setcookie("user_name", $_SESSION['nombre'], time() + (86400 * 30), "/");
                 if ($nombre == "Admin") {
                     setcookie("user_role", "1", time() + (86400 * 30), "/");
                 } else {
@@ -125,10 +121,11 @@
                 </section>
             </header>
             <!-- FIN DEL HEADER -->
+            
+            <!-- INICIO DEL MAIN -->
             <main class="main">
                 <?php
-                
-                if ($nombre== "Admin") {
+                if ($nombre == "Admin") {
                     ?> 
                     <h1 class="header__title header__title--cal mb-5">BIENVENIDO ENTRENADOR A LA PÁGINA DEL EQUIPO</h1>    
 
@@ -179,7 +176,7 @@
 
                         <button type="submit">Enviar</button>
                     </form>
-                    
+
                     <h2 class="mt-3">Eliminar Partido</h2>
                     <?php
                     if (isset($_GET["error"])) {
@@ -200,7 +197,7 @@
                     }
 
                     if (isset($_GET['vacio'])) {
-                        echo '<span class="text-danger ml-5">Error: algunos de los parametros vacio</span>';
+                        echo '<span class="background__error mt-5 ml-5">Error: algunos de los parametros están vacios</span>';
                     }
                     ?>
 
@@ -217,11 +214,9 @@
                     <?php
                 }
                 $bd = null;
-            
-                
-                
                 ?>
             </main>
+            <!-- FIN DEL MAIN -->
         </div>  
     </body>
 </html>

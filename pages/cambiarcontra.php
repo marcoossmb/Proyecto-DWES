@@ -21,21 +21,28 @@ if (isset($_GET['nombre'])) {
     </head>
     <body class="body">
         <div class="contenedor">
+            <!-- INICIO DEL HEADER -->
             <header class="header">
                 <h1 class="header__title">CAMBIAR CONTRASEÑA</h1>
             </header>
+            <!-- FIN DEL HEADER -->
+            
+            <!-- INICIO DEL MAIN -->
             <main class="main">
                 <?php
+                // Verifica si se han ingresado contraseñas y si coinciden
                 if (isset($pass1) && isset($pass2)) {
                     if ($pass1 === $pass2) {
-
+                        // Configuración de la conexión a la base de datos
                         $cadena_conexion = 'mysql:dbname=futbol;host=127.0.0.1';
                         $usuariobd = 'root';
                         $clavebd = '';
 
                         try {
+                            // Se crea la conexión con la base de datos
                             $bd = new PDO($cadena_conexion, $usuariobd, $clavebd);
 
+                            // Se actualiza la contraseña en la base de datos
                             $sqlActualizar = "UPDATE usuarios SET contraseña = '$hashedPass' WHERE nombre = '$nombre'";
                             $stmtUpdate = $bd->prepare($sqlActualizar);
                             $stmtUpdate->execute();
@@ -64,6 +71,7 @@ if (isset($_GET['nombre'])) {
                     <?php
                 } else {
                     ?>
+                    <!-- Formulario para verificar el correo electrónico -->
                     <form method="post" action="verificarCorreo.php">
                         <?php
                         if (isset($_GET['denegado'])) {
@@ -87,6 +95,7 @@ if (isset($_GET['nombre'])) {
                 }
                 ?>
 -            </main>
+            <!-- FIN DEL MAIN -->
         </div>  
     </body>
 </html>
