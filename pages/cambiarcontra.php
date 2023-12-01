@@ -94,7 +94,7 @@ if (isset($_GET['nombre'])) {
                     <?php
                 }
                 ?>
--            </main>
+            </main>
             <!-- FIN DEL MAIN -->
         </div>  
     </body>

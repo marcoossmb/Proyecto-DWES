@@ -5,15 +5,13 @@
         <title>Proyecto Fútbol</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/calendario.css"/>
+        <link rel="stylesheet" href="../css/calendario.css">
         <link rel="shortcut icon" href="../assets/images/logotipo.PNG" type="image/x-icon">
     </head>
     <?php
 
     function mostrarPartidosPorMes() {
         $dias = 0;
-
-        echo '<table border="1"><tr>';
 
         for ($i = -1; $i <= 30; $i++) {
             echo '<td>';
@@ -53,8 +51,6 @@
                 $dias = 0;
             }
         }
-
-        echo '</tr></table>';
     }
 
     // Inicia la sesión PHP
@@ -111,14 +107,14 @@
         <div class="contenedor">
             <!-- INICIO DEL HEADER -->
             <header class="header">
-                <section class="header__marg">
-                    <article class="header__article">
+                <div class="header__marg">
+                    <div class="header__article">
                         <img src="../assets/images/logotipo.PNG" alt="" class="header__img">
-                    </article>
-                    <article class="header__log">
-                        <a href="./cerrar.php"class="header__button">Cerrar Sesión</a>
-                    </article>
-                </section>
+                    </div>
+                    <div class="header__log">
+                        <a href="./cerrar.php" class="header__button">Cerrar Sesión</a>
+                    </div>
+                </div>
             </header>
             <!-- FIN DEL HEADER -->
             
@@ -155,6 +151,10 @@
                             <?php
                             mostrarPartidosPorMes();
                             ?>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
 

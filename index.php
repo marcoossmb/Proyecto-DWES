@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="mt-3 mb-3">
                         <label class="form-label">Usuario</label>
-                        <input name="user" type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+                        <input name="user" type="text" class="form-control" id="inputEmail1">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Contraseña</label>
